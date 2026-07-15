@@ -379,6 +379,8 @@ function initApp() {
     const devInstagramBtn = document.getElementById('devInstagramBtn');
     const devPortfolioBtn = document.getElementById('devPortfolioBtn');
     const devFacebookBtn = document.getElementById('devFacebookBtn');
+    const devGithubBtn = document.getElementById('devGithubBtn');
+    const devLinkedinBtn = document.getElementById('devLinkedinBtn');
 
     if (devWhatsappBtn) {
         devWhatsappBtn.addEventListener('click', () => trackButtonClick('whatsapp'));
@@ -394,6 +396,14 @@ function initApp() {
 
     if (devFacebookBtn) {
         devFacebookBtn.addEventListener('click', () => trackButtonClick('facebook'));
+    }
+
+    if (devGithubBtn) {
+        devGithubBtn.addEventListener('click', () => trackButtonClick('github'));
+    }
+
+    if (devLinkedinBtn) {
+        devLinkedinBtn.addEventListener('click', () => trackButtonClick('linkedin'));
     }
 
     // ========== زر الانتقال لقسم المطور ==========
@@ -622,7 +632,7 @@ function initApp() {
     ];
 
     // ========== العد التنازلي لامتحان QUREO ==========
-    const qureoExamDate = new Date(2026, 6, 22, 9, 0, 0); // 22 يوليو 2026 - 9 صباحاً
+    const qureoExamDate = new Date(2026, 6, 22, 9, 0, 0);
 
     function updateQureoCountdown() {
         const now = new Date().getTime();
@@ -2235,13 +2245,11 @@ function initApp() {
                 localStorage.removeItem('school_user');
                 toggleModal(loginModal, true);
                 if (appContainer) appContainer.style.display = 'none';
-                // ✅ إخفاء Skeleton إذا لم يكن المستخدم مسجلاً
                 hideSkeletonLoader();
             }
         });
     } else {
         toggleModal(loginModal, true);
-        // ✅ إخفاء Skeleton إذا لم يكن هناك مستخدم
         hideSkeletonLoader();
     }
     if (confirmPopup) confirmPopup.classList.remove('active');

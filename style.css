@@ -2445,3 +2445,41 @@ body.dark-mode .skeleton-card-item .skeleton-circle {
   background: linear-gradient(90deg, #334155 25%, #475569 50%, #334155 75%);
   background-size: 200% 100%;
 }
+/* ========== زر GitHub ========== */
+.github-btn {
+  background: #24292e;
+  box-shadow: 0 4px 12px rgba(36, 41, 46, 0.3);
+}
+
+.github-btn:hover {
+  background: #1a1e22;
+  box-shadow: 0 8px 20px rgba(36, 41, 46, 0.4);
+}
+
+/* ========== زر LinkedIn ========== */
+.linkedin-btn {
+  background: #0a66c2;
+  box-shadow: 0 4px 12px rgba(10, 102, 194, 0.3);
+}
+
+.linkedin-btn:hover {
+  background: #004182;
+  box-shadow: 0 8px 20px rgba(10, 102, 194, 0.4);
+}
+
+/* ========== الوضع الليلي ========== */
+body.dark-mode .github-btn {
+  background: #3d4145;
+}
+
+body.dark-mode .github-btn:hover {
+  background: #2d3135;
+}
+
+body.dark-mode .linkedin-btn {
+  background: #0a66c2;
+}
+
+body.dark-mode .linkedin-btn:hover {
+  background: #004182;
+}
