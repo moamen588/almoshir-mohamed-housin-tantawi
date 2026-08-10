@@ -1,0 +1,69 @@
+{
+  "subjects": [
+    {
+      "title": "الإدارة",
+      "badgeClass": "admin-badge",
+      "teachers": [
+        { "name": "أ/ سيد  - مدير المدرسة", "phone": "1001234567" },
+        { "name": "أ/  مروه سالم", "phone": "01003914796" },
+        { "name": "أ/  هبه", "phone": "01111302462" }
+      ]
+    },
+    {
+      "title": "اللغة العربية",
+      "badgeClass": "arabic-badge",
+      "teachers": [
+        { "name": "أ/ ريم", "phone": "01024676283" },
+        { "name": "أ/ حسن ابراهيم", "phone": "01030135410" },
+        { "name": "أ/(الزغل) محمود محمد", "phone": "01093969256"}
+      ]
+    },
+    {
+      "title": "الرياضيات",
+      "badgeClass": "math-badge",
+      "teachers": [
+        { "name": "أ/  محمد الجمال", "phone": "01284504849" },
+        { "name": "أ/  نورهان", "phone": "01070985751" }
+             
+      ]
+    },
+    {
+      "title": "العلوم",
+      "badgeClass": "science-badge",
+      "teachers": [
+        { "name": "أ/ منى العشري", "phone": "01055972683" },
+        { "name": "أ/ تامر صلاح", "phone": "01223808342" },
+        { "name": "أ/ احمد مجدي", "phone": "01121237654" }
+      ]
+    },
+    {
+      "title": "اللغة الإنجليزية",
+      "badgeClass": "english-badge",
+      "teachers": [
+        { "name": "أ/ علاء الشبراوي", "phone": "01060245077" }
+      ]
+    },
+    {
+      "title": "البرمجه",
+      "badgeClass": "programming-badge",
+      "teachers":[
+        { "name": "أ/ هبه ", "phone": "01111302462"}
+      ]
+    },
+    {
+      "title": "التاريخ",
+      "badgeClass": "history-badge",
+      "teachers":[
+        { "name": "أ/ صلاح", "phone": "01278704646"},
+        { "name": "أ/ محمد غانم", "phone": "01063697156"}
+      ]
+    },
+    {
+      "title": "علم النفس",
+      "badgeClass": "psychology-badge",
+      "teachers":[
+        { "name": "أ/ مرفت", "phone": "01064206096"}
+      ]
+    }
+  ]
+}

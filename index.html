@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   
   <!-- ========== TITLE ========== -->
-  <title>مدرسة المشير محمد حسين طنطاوي | الصف الثاني الثانوي</title>
+  <title>مدرسة المشير محمد حسين طنطاوي | جميع المراحل الدراسية</title>
   
   <!-- ========== META DESCRIPTION ========== -->
-  <meta name="description" content="الموقع الرسمي لمدرسة المشير محمد حسين طنطاوي - الصف الثاني الثانوي. جداول الامتحانات، المعلمين، والخدمات التعليمية.">
+  <meta name="description" content="الموقع الرسمي لمدرسة المشير محمد حسين طنطاوي - جميع المراحل الدراسية (إعدادي وثانوي). جداول الامتحانات، المعلمين، والخدمات التعليمية.">
   
   <!-- ========== OPEN GRAPH (للمشاركة على واتساب/فيسبوك) ========== -->
-  <meta property="og:title" content="مدرسة المشير محمد حسين طنطاوي | الصف الثاني الثانوي">
-  <meta property="og:description" content="الموقع الرسمي لمدرسة المشير محمد حسين طنطاوي - الصف الثاني الثانوي. جداول الامتحانات، المعلمين، والخدمات التعليمية.">
+  <meta property="og:title" content="مدرسة المشير محمد حسين طنطاوي | جميع المراحل الدراسية">
+  <meta property="og:description" content="الموقع الرسمي لمدرسة المشير محمد حسين طنطاوي - جميع المراحل الدراسية (إعدادي وثانوي). جداول الامتحانات، المعلمين، والخدمات التعليمية.">
   <meta property="og:image" content="https://almoshir-mohamedhesin-altntawi.netlify.app/simg.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -22,8 +22,8 @@
   
   <!-- ========== TWITTER CARDS ========== -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="مدرسة المشير محمد حسين طنطاوي | الصف الثاني الثانوي">
-  <meta name="twitter:description" content="الموقع الرسمي لمدرسة المشير محمد حسين طنطاوي - الصف الثاني الثانوي">
+  <meta name="twitter:title" content="مدرسة المشير محمد حسين طنطاوي | جميع المراحل الدراسية">
+  <meta name="twitter:description" content="الموقع الرسمي لمدرسة المشير محمد حسين طنطاوي - جميع المراحل الدراسية">
   <meta name="twitter:image" content="https://almoshir-mohamedhesin-altntawi.netlify.app/simg.jpg">
   
   <!-- ========== PWA ========== -->
@@ -79,7 +79,7 @@
   <!-- QR Code Library -->
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
   
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <!-- ==================== Skeleton Cards ==================== -->
@@ -115,10 +115,15 @@
 
   <canvas id="signatureCanvas" width="400" height="80" style="display:none;"></canvas>
 
-  <!-- ==================== نافذة تسجيل الدخول ==================== -->
+  <!-- ==================== صفحة تسجيل الدخول ==================== -->
   <div id="loginModal" class="modal active" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+    <div class="login-page-header">
+      <img src="simg.jpg" alt="شعار المدرسة" class="login-logo">
+      <h2 id="loginTitle" class="login-title">مدرسة المشير محمد حسين طنطاوي</h2>
+      <p class="login-page-subtitle">بوابة الطلاب | جميع المراحل الدراسية (إعدادي وثانوي)</p>
+    </div>
     <div class="modal-content card">
-      <h2 id="loginTitle" class="modal-title">تسجيل الدخول</h2>
+      <h2 class="login-card-title">تسجيل الدخول</h2>
       
       <p class="login-notice">
         ⚠️ يرجى إدخال بياناتك الحقيقية للدخول، وفي حالة البيانات غير الحقيقية سيتم حذفها أو حظرها.
@@ -130,18 +135,96 @@
         <p>🔐 مشفرة باستخدام Base64</p>
       </div>
       
-      <!-- اختيار النظام -->
+      <!-- اختيار المرحلة الدراسية -->
       <div class="system-selector">
-        <label class="system-label">اختر النظام الدراسي:</label>
+        <label class="system-label">اختر المرحلة الدراسية:</label>
         <div class="system-options">
-          <button type="button" class="system-btn active" data-system="عام" id="systemGeneral">
-            <span class="system-icon">🏫</span>
-            <span class="system-text">عام</span>
+          <button type="button" class="system-btn active" data-stage="ثانوي" id="stageSecondary">
+            <span class="system-icon">🎓</span>
+            <span class="system-text">ثانوي</span>
           </button>
-          <button type="button" class="system-btn" data-system="خدمات" id="systemServices">
-            <span class="system-icon">💼</span>
-            <span class="system-text">خدمات</span>
+          <button type="button" class="system-btn" data-stage="إعدادي" id="stagePrep">
+            <span class="system-icon">📚</span>
+            <span class="system-text">إعدادي</span>
           </button>
+        </div>
+      </div>
+
+      <!-- السنة الدراسية (إعدادي) -->
+      <div class="input-group" id="prepYearGroup" style="display:none;">
+        <label for="prepYear">السنة الدراسية (إعدادي)</label>
+        <select id="prepYear">
+          <option>أولى إعدادي</option>
+          <option>ثانية إعدادي</option>
+          <option>ثالثة إعدادي</option>
+        </select>
+      </div>
+
+      <!-- حقول المرحلة الثانوية -->
+      <div id="secondaryFields">
+        <!-- النظام الدراسي -->
+        <div class="system-selector">
+          <label class="system-label">اختر النظام الدراسي:</label>
+          <div class="system-options">
+            <button type="button" class="system-btn active" data-system="عام" id="systemGeneral">
+              <span class="system-icon">🏫</span>
+              <span class="system-text">عام</span>
+            </button>
+            <button type="button" class="system-btn" data-system="خدمات" id="systemServices">
+              <span class="system-icon">💼</span>
+              <span class="system-text">خدمات</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- السنة الدراسية (ثانوي) -->
+        <div class="input-group">
+          <label for="yearSecondary">السنة الدراسية (ثانوي)</label>
+          <select id="yearSecondary">
+            <option>أولى ثانوي</option>
+            <option>ثانية ثانوي</option>
+            <option>ثالثة ثانوي</option>
+          </select>
+        </div>
+
+        <!-- نظام التعليم -->
+        <div class="system-selector">
+          <label class="system-label">نظام التعليم:</label>
+          <div class="system-options">
+            <button type="button" class="system-btn active" data-edusys="عام" id="eduGeneral">
+              <span class="system-text">عام</span>
+            </button>
+            <button type="button" class="system-btn" data-edusys="بكالوريا" id="eduBaccalaureate">
+              <span class="system-text">بكالوريا</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- اختيار الشعبة (عام + ثالثة ثانوي) -->
+        <div class="input-group" id="divisionGroup" style="display:none;">
+          <label for="division">اختر الشعبة:</label>
+          <select id="division">
+            <option>علمي رياضة</option>
+            <option>علمي علوم</option>
+            <option>أدبي</option>
+          </select>
+        </div>
+
+        <!-- اختيار المسار (بكالوريا + ثانية/ثالثة) -->
+        <div class="input-group" id="trackGroup" style="display:none;">
+          <label for="track">اختر المسار:</label>
+          <select id="track">
+            <option value="المسار الأول: الطب وعلوم الحياة">المسار الأول: الطب وعلوم الحياة</option>
+            <option value="المسار الثاني: الهندسة وعلوم الحاسب">المسار الثاني: الهندسة وعلوم الحاسب</option>
+            <option value="المسار الثالث: الأعمال">المسار الثالث: الأعمال</option>
+            <option value="المسار الرابع: الآداب والفنون">المسار الرابع: الآداب والفنون</option>
+          </select>
+        </div>
+
+        <!-- المادة الخاصة بالمسار -->
+        <div class="input-group" id="subjectGroup" style="display:none;">
+          <label for="subject">اختر المادة:</label>
+          <select id="subject"></select>
         </div>
       </div>
       
@@ -171,7 +254,11 @@
       <div class="review-data" id="reviewData">
         <div class="review-item"><span class="review-label">👤 الاسم:</span><span class="review-value" id="reviewName"></span></div>
         <div class="review-item"><span class="review-label">📱 رقم الواتساب:</span><span class="review-value" id="reviewPhone" dir="ltr"></span></div>
-        <div class="review-item"><span class="review-label">📚 النظام:</span><span class="review-value" id="reviewSystem"></span></div>
+        <div class="review-item"><span class="review-label">🎓 المرحلة:</span><span class="review-value" id="reviewStage"></span></div>
+        <div class="review-item"><span class="review-label">📅 السنة الدراسية:</span><span class="review-value" id="reviewYear"></span></div>
+        <div class="review-item"><span class="review-label">📚 النظام الدراسي:</span><span class="review-value" id="reviewSystem"></span></div>
+        <div class="review-item"><span class="review-label">🎯 نظام التعليم:</span><span class="review-value" id="reviewEduSys"></span></div>
+        <div class="review-item"><span class="review-label">🏷️ التفاصيل:</span><span class="review-value" id="reviewDetails"></span></div>
       </div>
       <div class="confirm-actions">
         <button id="confirmYes" class="btn-primary">✅ نعم، البيانات صحيحة</button>
@@ -236,74 +323,18 @@
 
       <!-- ==================== المعلمون والإدارة ==================== -->
       <section class="section-title">👨‍🏫 المعلمون والإدارة</section>
-      <div class="grid-teachers">
-        <!-- العربي -->
-        <div class="card teacher-card">
-          <span class="subject-badge arabic">🟠 العربي</span>
-          <div class="teacher-contact"><p>ميس ريم</p><div class="phone-row"><a href="https://wa.me/201024676283" class="whatsapp-link" target="_blank">01024676283</a><button class="copy-btn" onclick="copyPhone('01024676283')" title="نسخ الرقم">📋</button></div></div>
-          <div class="teacher-contact"><p>مستر حسن ابراهيم</p><div class="phone-row"><a href="https://wa.me/201030135410" class="whatsapp-link" target="_blank">01030135410</a><button class="copy-btn" onclick="copyPhone('01030135410')" title="نسخ الرقم">📋</button></div></div>
-          <div class="teacher-contact"><p>مستر محمود محمد</p><div class="phone-row"><a href="https://wa.me/201093969256" class="whatsapp-link" target="_blank">01093969256</a><button class="copy-btn" onclick="copyPhone('01093969256')" title="نسخ الرقم">📋</button></div></div>
-        </div>
-        <!-- الإنجليزي -->
-        <div class="card teacher-card">
-          <span class="subject-badge english">🔵 الإنجليزي</span>
-          <div class="teacher-contact"><p>مستر علاء الشبراوي</p><div class="phone-row"><a href="https://wa.me/201060245077" class="whatsapp-link" target="_blank">01060245077</a><button class="copy-btn" onclick="copyPhone('01060245077')" title="نسخ الرقم">📋</button></div></div>
-        </div>
-        <!-- الفرنساوي -->
-        <div class="card teacher-card">
-          <span class="subject-badge french">🟣 الفرنساوي</span>
-          <div class="teacher-contact"><p>مستر احمد</p><div class="phone-row"><a href="https://wa.me/201003397216" class="whatsapp-link" target="_blank">01003397216</a><button class="copy-btn" onclick="copyPhone('01003397216')" title="نسخ الرقم">📋</button></div></div>
-        </div>
-        <!-- العلوم -->
-        <div class="card teacher-card">
-          <span class="subject-badge science">🟢 العلوم</span>
-          <div class="teacher-contact"><p>ميس منى العشري</p><div class="phone-row"><a href="https://wa.me/201055972683" class="whatsapp-link" target="_blank">01055972683</a><button class="copy-btn" onclick="copyPhone('01055972683')" title="نسخ الرقم">📋</button></div></div>
-          <div class="teacher-contact"><p>مستر احمد مجدي</p><div class="phone-row"><a href="https://wa.me/201121237654" class="whatsapp-link" target="_blank">01121237654</a><button class="copy-btn" onclick="copyPhone('01121237654')" title="نسخ الرقم">📋</button></div></div>
-          <div class="teacher-contact"><p>مستر تامر صلاح</p><div class="phone-row"><a href="https://wa.me/201223808342" class="whatsapp-link" target="_blank">01223808342</a><button class="copy-btn" onclick="copyPhone('01223808342')" title="نسخ الرقم">📋</button></div></div>
-        </div>
-        <!-- التاريخ -->
-        <div class="card teacher-card">
-          <span class="subject-badge history">🟡 التاريخ</span>
-          <div class="teacher-contact"><p>مستر صلاح</p><div class="phone-row"><a href="https://wa.me/201278704646" class="whatsapp-link" target="_blank">01278704646</a><button class="copy-btn" onclick="copyPhone('01278704646')" title="نسخ الرقم">📋</button></div></div>
-          <div class="teacher-contact"><p>مستر محمد غانم</p><div class="phone-row"><a href="https://wa.me/201063697156" class="whatsapp-link" target="_blank">01063697156</a><button class="copy-btn" onclick="copyPhone('01063697156')" title="نسخ الرقم">📋</button></div></div>
-        </div>
-        <!-- الفلسفة -->
-        <div class="card teacher-card">
-          <span class="subject-badge philosophy">🔴 الفلسفة والمنطق</span>
-          <div class="teacher-contact"><p>ميس مرڤت</p><div class="phone-row"><a href="https://wa.me/201064206096" class="whatsapp-link" target="_blank">01064206096</a><button class="copy-btn" onclick="copyPhone('01064206096')" title="نسخ الرقم">📋</button></div></div>
-        </div>
-        <!-- الرياضيات -->
-        <div class="card teacher-card">
-          <span class="subject-badge math">🔘 الرياضيات</span>
-          <div class="teacher-contact"><p>مستر محمد الجمال</p><div class="phone-row"><a href="https://wa.me/201284504849" class="whatsapp-link" target="_blank">01284504849</a><button class="copy-btn" onclick="copyPhone('01284504849')" title="نسخ الرقم">📋</button></div></div>
-          <div class="teacher-contact"><p>ميس نورهان</p><div class="phone-row"><a href="https://wa.me/201070985751" class="whatsapp-link" target="_blank">01070985751</a><button class="copy-btn" onclick="copyPhone('01070985751')" title="نسخ الرقم">📋</button></div></div>
-        </div>
-        <!-- البرمجة -->
-        <div class="card teacher-card">
-          <span class="subject-badge programming">⚪ البرمجة</span>
-          <div class="teacher-contact"><p>ميس هبه</p><div class="phone-row"><a href="https://wa.me/201111302462" class="whatsapp-link" target="_blank">01111302462</a><button class="copy-btn" onclick="copyPhone('01111302462')" title="نسخ الرقم">📋</button></div></div>
-        </div>
-        <!-- الإدارة -->
-        <div class="card teacher-card">
-          <span class="subject-badge admin">⚫ الإدارة</span>
-          <div class="teacher-contact"><p>ميس هبه</p><div class="phone-row"><a href="https://wa.me/201111302462" class="whatsapp-link" target="_blank">01111302462</a><button class="copy-btn" onclick="copyPhone('01111302462')" title="نسخ الرقم">📋</button></div></div>
-          <div class="teacher-contact"><p>ميس مروه سالم</p><div class="phone-row"><a href="https://wa.me/201003914796" class="whatsapp-link" target="_blank">01003914796</a><button class="copy-btn" onclick="copyPhone('01003914796')" title="نسخ الرقم">📋</button></div></div>
-          <div class="teacher-contact"><p>مستر سيد (المدير)</p><div class="phone-row"><a href="https://wa.me/201015006622" class="whatsapp-link" target="_blank">01015006622</a><button class="copy-btn" onclick="copyPhone('01015006622')" title="نسخ الرقم">📋</button></div></div>
-        </div>
-      </div>
+      <div class="grid-teachers" id="teachersContainer"></div>
 
       <!-- ==================== مجموعات التواصل ==================== -->
       <section class="section-title">👥 مجموعات التواصل</section>
       <div class="groups">
-        <a href="https://chat.whatsapp.com/Ft8T7tNR7NT05eUziLrgLi" class="btn-primary" target="_blank" rel="noopener">جروب ثاني ثانوي خدامات اولاد</a>
+        <a href="https://chat.whatsapp.com/Ft8T7tNR7NT05eUziLrgLi" class="btn-primary" target="_blank" rel="noopener">جروب الطلاب على واتساب</a>
         <a href="https://www.facebook.com/share/g/1JjobkbtBc/" class="btn-primary" target="_blank" rel="noopener">جروب المدرسة</a>
       </div>
 
-      <!-- ==================== جدول امتحانات نهاية العام ==================== -->
-      <!-- <section class="section-title">📅 جدول امتحانات الفصل الدراسي الثاني 2025/2026 (نهاية العام)</section> -->
+      <section class="section-title">📅 جدول امتحانات الفصل الدراسي الثاني 2025/2026 (نهاية العام)</section>
 
-      <!-- المواد غير المضافة للمجموع -->
-      <!-- <div class="card">
+      <div class="card">
         <h3>📝 أولاً: المواد غير المضافة للمجموع</h3>
         <table class="exam-table responsive-table">
           <thead><tr><th>اليوم والتاريخ</th><th>المادة</th><th>الوقت</th><th>زمن الإجابة</th><th>الحالة</th></tr></thead>
@@ -328,10 +359,9 @@
              </tr>
           </tbody>
         </table>
-      </div> -->
+      </div>
 
-      <!-- المواد المضافة للمجموع -->
-      <!-- <div class="card">
+      <div class="card">
         <h3>📚 ثانياً: المواد المضافة للمجموع</h3>
         <table class="exam-table responsive-table">
           <thead><tr><th>اليوم والتاريخ</th><th>المادة</th><th>الوقت</th><th>زمن الإجابة</th><th>الحالة</th></tr></thead>
@@ -350,10 +380,9 @@
       <div class="exam-images">
         <img src="finalGadwal.jpeg" alt="جدول امتحانات نهاية العام - المواد المضافة" class="exam-img" onclick="openLightbox(this.src, 'جدول امتحانات نهاية العام - المواد المضافة')" title="اضغط للتكبير">
         <img src="finalGadwal1.jpeg" alt="جدول امتحانات نهاية العام - المواد غير المضافة" class="exam-img" onclick="openLightbox(this.src, 'جدول امتحانات نهاية العام - المواد غير المضافة')" title="اضغط للتكبير">
-      </div> -->
+      </div>
 
-      <!-- ==================== جدول امتحانات شهر أبريل ==================== -->
-      <!-- <section class="section-title">📅 جدول امتحانات شهر أبريل 2026</section>
+      <section class="section-title">📅 جدول امتحانات شهر أبريل 2026</section>
       <div class="card">
         <table class="exam-table responsive-table">
           <thead><tr><th>اليوم والتاريخ</th><th>مواد الصف الأول الثانوي</th><th>الحالة</th></tr></thead>
@@ -368,10 +397,9 @@
       </div>
       <div class="exam-images">
         <img src="gadwal-april.jpeg" alt="جدول امتحانات شهر أبريل" class="exam-img" onclick="openLightbox(this.src, 'جدول امتحانات شهر أبريل 2026')" title="اضغط للتكبير">
-      </div> -->
+      </div>
 
-      <!-- ==================== جدول امتحان QUREO ==================== -->
-      <!-- <section class="section-title">📅 جدول امتحان البرمجة العملي على منصة QUREO</section>
+      <section class="section-title">📅 جدول امتحان البرمجة العملي على منصة QUREO</section>
       <div class="card">
         <table class="exam-table responsive-table">
           <thead><tr><th>اليوم والتاريخ</th><th>المحافظات</th><th>الحالة</th></tr></thead>
@@ -391,7 +419,7 @@
           </tbody>
         </table>
         <p style="color:#64748b;font-size:0.9rem;margin-top:0.5rem;">يرجى اتباع ذات الإجراءات المتبعة سابقاً في هذا الامتحان.</p>
-      </div> -->
+      </div>
 
       <!-- ==================== مؤقت العد التنازلي ==================== -->
 <section class="section-title">⏳ مؤقت العد التنازلي لامتحان البرمجة (التصفيات)</section>
@@ -498,13 +526,13 @@
             <button id="shareSiteBtn" class="btn-primary share-btn">📢 مشاركة الموقع</button>
             <button id="copyLinkBtn" class="btn-outline copy-link-btn">🔗 نسخ الرابط</button>
           </div>
-          <p class="site-url" id="siteUrlDisplay">https://almoshir-mohamedhesin-altntawi.netlify.app/</p>
+          <p class="site-url" id="siteUrlDisplay">https://almoshir-mohamed-housin-tantawi.vercel.app/</p>
         </div>
         
         <div class="dev-info">
           <img class="dev-img1" src="dev-img.jpg" alt="صورة المطور">
           <h2 class="dev-name"><strong>Moamen Magdy</strong></h2>
-          <p class="dev-role">Front-End Developer | طالب بالصف الأول الثانوي (خدمات)</p>
+          <p class="dev-role"> AI Orchestration & Front-End Developer | طالب بالصف الثاني الثانوي (خدمات)</p>
         </div>
         
         <div class="dev-contact">
@@ -582,7 +610,6 @@
     
   </div>
 
-  <script src="script.js"></script>
   <style>
     /* تنسيق محسن لأزرار اختيار النظام */
     .system-selector {
@@ -675,5 +702,8 @@
             <polyline points="18 15 12 9 6 15"></polyline>
         </svg>
     </button>
+<script src="js/utils.js"></script>
+  <script src="js/app.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

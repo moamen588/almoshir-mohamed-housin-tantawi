@@ -241,9 +241,27 @@ function initApp() {
     const lightboxImg = document.getElementById('lightboxImg');
     const systemGeneral = document.getElementById('systemGeneral');
     const systemServices = document.getElementById('systemServices');
+    const stageSecondary = document.getElementById('stageSecondary');
+    const stagePrep = document.getElementById('stagePrep');
+    const prepYearGroup = document.getElementById('prepYearGroup');
+    const prepYear = document.getElementById('prepYear');
+    const secondaryFields = document.getElementById('secondaryFields');
+    const yearSecondary = document.getElementById('yearSecondary');
+    const eduGeneral = document.getElementById('eduGeneral');
+    const eduBaccalaureate = document.getElementById('eduBaccalaureate');
+    const divisionGroup = document.getElementById('divisionGroup');
+    const division = document.getElementById('division');
+    const trackGroup = document.getElementById('trackGroup');
+    const track = document.getElementById('track');
+    const subjectGroup = document.getElementById('subjectGroup');
+    const subject = document.getElementById('subject');
     const reviewName = document.getElementById('reviewName');
     const reviewPhone = document.getElementById('reviewPhone');
     const reviewSystem = document.getElementById('reviewSystem');
+    const reviewStage = document.getElementById('reviewStage');
+    const reviewYear = document.getElementById('reviewYear');
+    const reviewEduSys = document.getElementById('reviewEduSys');
+    const reviewDetails = document.getElementById('reviewDetails');
     const downloadCertBtn = document.getElementById('downloadCertBtn');
     const certStatus = document.getElementById('certStatus');
     const certCardDesc = document.getElementById('certCardDesc');
@@ -252,6 +270,7 @@ function initApp() {
     const qrCodeContainer = document.getElementById('qrCodeContainer');
 
     let pendingData = null, selectedSystem = 'عام';
+    let selectedStage = 'ثانوي', selectedEduSys = 'عام';
     let isPasswordRequired = false, existingUserData = null;
     let passwordAttempts = 0;
     const MAX_PASSWORD_ATTEMPTS = 3;
@@ -278,8 +297,41 @@ function initApp() {
     }
     
     // ========== وظائف localStorage ==========
-    function saveLocal(n, p, s) { 
-        localStorage.setItem('school_user', JSON.stringify({ name: n.trim(), phone: p.trim(), system: s })); 
+    function saveLocal(userObj) { 
+        localStorage.setItem('school_user', JSON.stringify(userObj)); 
+    }
+    
+    function buildUserData() {
+        const stageData = {
+            name: fullNameInput.value.trim(),
+            phone: whatsappInput.value.trim(),
+            stage: selectedStage
+        };
+        if (selectedStage === 'إعدادي') {
+            stageData.year = prepYear ? prepYear.value : 'أولى إعدادي';
+            stageData.system = '';
+            stageData.educationSystem = '';
+            stageData.division = '';
+            stageData.track = '';
+            stageData.subject = '';
+            return stageData;
+        }
+        stageData.system = selectedSystem;
+        stageData.year = yearSecondary ? yearSecondary.value : 'أولى ثانوي';
+        stageData.educationSystem = selectedEduSys;
+        if (selectedEduSys === 'عام' && yearSecondary && yearSecondary.value === 'ثالثة ثانوي') {
+            stageData.division = division ? division.value : '';
+        } else {
+            stageData.division = '';
+        }
+        if (selectedEduSys === 'بكالوريا' && yearSecondary && (yearSecondary.value === 'ثانية ثانوي' || yearSecondary.value === 'ثالثة ثانوي')) {
+            stageData.track = track ? track.value : '';
+            stageData.subject = subject ? subject.value : '';
+        } else {
+            stageData.track = '';
+            stageData.subject = '';
+        }
+        return stageData;
     }
     
     function getLocalUser() { 
@@ -611,6 +663,60 @@ function initApp() {
     if (systemGeneral) systemGeneral.addEventListener('click', () => setSystem('عام'));
     if (systemServices) systemServices.addEventListener('click', () => setSystem('خدمات'));
 
+    // ========== اختيار المرحلة الدراسية ==========
+    function setStage(s) {
+        selectedStage = s;
+        if (stageSecondary) stageSecondary.classList.toggle('active', s === 'ثانوي');
+        if (stagePrep) stagePrep.classList.toggle('active', s === 'إعدادي');
+        if (prepYearGroup) prepYearGroup.style.display = s === 'إعدادي' ? 'block' : 'none';
+        if (secondaryFields) secondaryFields.style.display = s === 'ثانوي' ? 'block' : 'none';
+        if (passwordGroup) passwordGroup.style.display = 'none';
+        isPasswordRequired = false;
+        if (loginSubmitBtn) loginSubmitBtn.textContent = 'الدخول';
+    }
+    if (stageSecondary) stageSecondary.addEventListener('click', () => setStage('ثانوي'));
+    if (stagePrep) stagePrep.addEventListener('click', () => setStage('إعدادي'));
+    if (yearSecondary) yearSecondary.addEventListener('change', updateDynamicFields);
+    if (track) track.addEventListener('change', updateSubjects);
+
+    // ========== نظام التعليم (عام / بكالوريا) ==========
+    function setEduSys(e) {
+        selectedEduSys = e;
+        if (eduGeneral) eduGeneral.classList.toggle('active', e === 'عام');
+        if (eduBaccalaureate) eduBaccalaureate.classList.toggle('active', e === 'بكالوريا');
+        updateDynamicFields();
+    }
+    if (eduGeneral) eduGeneral.addEventListener('click', () => setEduSys('عام'));
+    if (eduBaccalaureate) eduBaccalaureate.addEventListener('click', () => setEduSys('بكالوريا'));
+
+    // ========== إظهار/إخفاء الشعبة والمسار والمادة ==========
+    function updateDynamicFields() {
+        if (!yearSecondary) return;
+        const yr = yearSecondary.value;
+        const showDivision = selectedEduSys === 'عام' && yr === 'ثالثة ثانوي';
+        const showTrack = selectedEduSys === 'بكالوريا' && (yr === 'ثانية ثانوي' || yr === 'ثالثة ثانوي');
+        if (divisionGroup) divisionGroup.style.display = showDivision ? 'block' : 'none';
+        if (trackGroup) trackGroup.style.display = showTrack ? 'block' : 'none';
+        if (!showTrack) {
+            if (subjectGroup) subjectGroup.style.display = 'none';
+        } else {
+            updateSubjects();
+        }
+    }
+
+    function updateSubjects() {
+        if (!track || !subject) return;
+        const maps = {
+            'المسار الأول: الطب وعلوم الحياة': ['الرياضيات', 'الفيزياء'],
+            'المسار الثاني: الهندسة وعلوم الحاسب': ['البرمجة', 'الكيمياء'],
+            'المسار الثالث: الأعمال': ['المحاسبة', 'إدارة الأعمال'],
+            'المسار الرابع: الآداب والفنون': ['علم النفس', 'اللغة الأجنبية الثانية']
+        };
+        const opts = maps[track.value] || [];
+        subject.innerHTML = opts.map(o => `<option>${o}</option>`).join('');
+        if (subjectGroup) subjectGroup.style.display = opts.length ? 'block' : 'none';
+    }
+
     // ========== الوضع الليلي ==========
     function applyDarkMode(d) { 
         document.body.classList.toggle('dark-mode', d); 
@@ -731,7 +837,7 @@ function initApp() {
     function isValidName(n) { const t = n.trim(); return /^[\u0621-\u064Aa-zA-Z\s\-'.]+$/.test(t) && t.split(/\s+/).filter(p => p.length > 0).length >= 3; }
 
     // ========== إرسال البيانات إلى Firestore ==========
-    async function sendToFirestore(n, p, s, pass) {
+    async function sendToFirestore(u, pass) {
         if (!window.db) return false;
         if (!window.userIP) { 
             try { window.userIP = (await (await fetch('https://api.ipify.org?format=json')).json()).ip; } 
@@ -744,7 +850,10 @@ function initApp() {
         const device = window.userDevice || 'غير معروف';
         
         await window.firebaseAddDoc(window.firebaseCollection(window.db, "students"), { 
-            name: n.trim(), phone: p.trim(), system: s, password: pass, 
+            name: u.name, phone: u.phone, system: u.system || '', 
+            stage: u.stage, year: u.year, educationSystem: u.educationSystem || '',
+            division: u.division || '', track: u.track || '', subject: u.subject || '',
+            password: pass, 
             ip: window.userIP, fingerprint: fp, visitCount: 1, 
             city: city, region: region, device: device,
             lastLogin: new Date(), createdAt: new Date() 
@@ -851,6 +960,11 @@ function initApp() {
                     studentName: user.name,
                     studentPhone: user.phone,
                     studentSystem: user.system,
+                    studentStage: user.stage || 'ثانوي',
+                    studentYear: user.year || '',
+                    studentDivision: user.division || '',
+                    studentTrack: user.track || '',
+                    studentSubject: user.subject || '',
                     isSpecial: isSpecial,
                     isDeveloper: isDev,
                     status: 'active',
@@ -862,6 +976,11 @@ function initApp() {
                     studentName: user.name,
                     studentPhone: user.phone,
                     studentSystem: user.system,
+                    studentStage: user.stage || 'ثانوي',
+                    studentYear: user.year || '',
+                    studentDivision: user.division || '',
+                    studentTrack: user.track || '',
+                    studentSubject: user.subject || '',
                     isSpecial: isSpecial,
                     isDeveloper: isDev
                 };
@@ -913,7 +1032,16 @@ function initApp() {
         const userName = certData?.studentName || getLocalUser()?.name || 'طالب';
         const userSystem = certData?.studentSystem || getLocalUser()?.system || 'عام';
         const userPhone = certData?.studentPhone || getLocalUser()?.phone || '';
-        
+        const localUser = getLocalUser() || {};
+        const userStage = certData?.studentStage || localUser.stage || 'ثانوي';
+        const userYear = certData?.studentYear || localUser.year || '';
+        const levelLabel = userStage === 'إعدادي'
+            ? (userYear || 'الصف الإعدادي')
+            : (userYear || 'الصف الثانوي');
+        const userDivision = certData?.studentDivision || localUser.division || '';
+        const userTrack = certData?.studentTrack || localUser.track || '';
+        const userSubject = certData?.studentSubject || localUser.subject || '';
+
         const developer = isDeveloper(userName);
         const special = isSpecialStudent(userName);
         const today = new Date().toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' });
@@ -961,7 +1089,7 @@ function initApp() {
                     
                     <div class="dev-tags">
                         <span class="dev-tag">Front-End Developer</span>
-                        <span class="dev-tag">الصف الأول الثانوي</span>
+                        <span class="dev-tag">${escapeHtml(levelLabel)}</span>
                         <span class="dev-tag">نظام ${escapeHtml(userSystem)}</span>
                     </div>
                     
@@ -983,7 +1111,7 @@ function initApp() {
                     <div class="dev-signature-section">
                         <div class="dev-signature-line"></div>
                         <p class="dev-signature-text">𝓜𝓸𝓪𝓶𝓮𝓷 𝓜𝓪𝓰𝓭𝔂</p>
-                        <p class="dev-signature-role">مطور الموقع | الصف الأول الثانوي</p>
+                        <p class="dev-signature-role">مطور الموقع | ${userStage === 'إعدادي' ? 'الصف الإعدادي' : 'الصف الثانوي'}</p>
                     </div>
                 </div>
                 
@@ -1030,7 +1158,7 @@ function initApp() {
                         <span class="special-star-right">⭐</span>
                     </div>
                     
-                    <p class="special-info">الصف الأول الثانوي | نظام: ${escapeHtml(userSystem)}</p>
+                    <p class="special-info">${escapeHtml(levelLabel)} | نظام: ${escapeHtml(userSystem)}</p>
                     
                     <div class="special-message-card">
                         <div class="special-message-icon">💝</div>
@@ -1045,7 +1173,7 @@ function initApp() {
                     
                     <div class="special-signature-section">
                         <p class="special-signature-name">𝓜𝓸𝓪𝓶𝓮𝓷 𝓜𝓪𝓰𝓭𝔂</p>
-                        <p class="special-signature-role">مطور الموقع | الصف الأول الثانوي</p>
+                        <p class="special-signature-role">مطور الموقع | ${userStage === 'إعدادي' ? 'الصف الإعدادي' : 'الصف الثانوي'}</p>
                         <p class="special-signature-note">مع تحيات المطور 😉💕</p>
                     </div>
                 </div>
@@ -1073,7 +1201,7 @@ function initApp() {
                             <span>🎓</span>
                         </div>
                         <h2 class="normal-school-name">مدرسة المشير محمد حسين طنطاوي</h2>
-                        <p class="normal-school-subtitle">الصف الأول الثانوي</p>
+                        <p class="normal-school-subtitle">${escapeHtml(levelLabel)}</p>
                     </div>
                     
                     <div class="normal-separator">
@@ -1092,7 +1220,7 @@ function initApp() {
                     </div>
                     
                     <div class="normal-info-badges">
-                        <span class="normal-badge">📚 الصف الأول الثانوي</span>
+                        <span class="normal-badge">📚 ${escapeHtml(levelLabel)}</span>
                         <span class="normal-badge">🏫 نظام: ${escapeHtml(userSystem)}</span>
                     </div>
                     
@@ -1107,7 +1235,7 @@ function initApp() {
                         <div class="normal-signature-box">
                             <p class="normal-from-text">من المطور</p>
                             <p class="normal-dev-signature">𝓜𝓸𝓪𝓶𝓮𝓷 𝓜𝓪𝓰𝓭𝔂</p>
-                            <p class="normal-dev-info">مطور الموقع | الصف الأول الثانوي</p>
+                            <p class="normal-dev-info">مطور الموقع | ${userStage === 'إعدادي' ? 'الصف الإعدادي' : 'الصف الثانوي'}</p>
                         </div>
                     </div>
                 </div>
@@ -1889,10 +2017,20 @@ function initApp() {
     }
 
     // ========== عرض المراجعة ==========
-    function showReview(n, p, s) {
-        if (reviewName) reviewName.textContent = n;
-        if (reviewPhone) reviewPhone.textContent = p;
-        if (reviewSystem) reviewSystem.textContent = s;
+    function showReview(data) {
+        if (reviewName) reviewName.textContent = data.name;
+        if (reviewPhone) reviewPhone.textContent = data.phone;
+        if (reviewStage) reviewStage.textContent = data.stage === 'إعدادي' ? 'إعدادي' : 'ثانوي';
+        if (reviewYear) reviewYear.textContent = data.year || '—';
+        if (reviewSystem) reviewSystem.textContent = data.stage === 'إعدادي' ? '—' : (data.system || '—');
+        if (reviewEduSys) reviewEduSys.textContent = data.stage === 'إعدادي' ? '—' : (data.educationSystem || '—');
+        if (reviewDetails) {
+            const parts = [];
+            if (data.division) parts.push('الشعبة: ' + data.division);
+            if (data.track) parts.push('المسار: ' + data.track);
+            if (data.subject) parts.push('المادة: ' + data.subject);
+            reviewDetails.textContent = parts.length ? parts.join(' | ') : '—';
+        }
     }
 
     // ========== عرض الصفحة الرئيسية ==========
@@ -1906,8 +2044,17 @@ function initApp() {
         appContainer.style.display = 'block';
         
         const user = getLocalUser();
-        const sys = user && user.system ? ` <span style="color:#f59e0b">(${escapeHtml(user.system)})</span>` : '';
-        welcomeMessage.innerHTML = `أهلاً بيك يا <span style="color:red">${escapeHtml(userName)}</span>${sys}`;
+        let userLine = '';
+        if (user) {
+            const pieces = [];
+            if (user.year) pieces.push(user.year);
+            if (user.system) pieces.push(user.system);
+            if (user.division) pieces.push(user.division);
+            if (user.track) pieces.push(user.track);
+            if (user.subject) pieces.push(user.subject);
+            userLine = pieces.length ? ' <span style="color:#f59e0b">(' + escapeHtml(pieces.join(' | ')) + ')</span>' : '';
+        }
+        welcomeMessage.innerHTML = `أهلاً بيك يا <span style="color:red">${escapeHtml(userName)}</span>${userLine}`;
         
         if (passwordGroup) passwordGroup.style.display = 'none';
         isPasswordRequired = false; 
@@ -1940,14 +2087,14 @@ function initApp() {
     // ========== تأكيد التسجيل ==========
     async function onConfirmYes() {
         if (!pendingData) return;
-        const { name, phone, system } = pendingData;
+        const { name, phone } = pendingData;
         if (containsForbiddenText(name)) { await autoBan(phone, `كلمات مسيئة: "${escapeHtml(name)}"`); return; }
         
         const pw = prompt('🔑 اختار كلمة سر للدخول:');
         if (!pw || !pw.trim()) { alert('لازم تحط كلمة سر!'); return; }
         
-        saveLocal(name, phone, system);
-        await sendToFirestore(name, phone, system, pw.trim());
+        saveLocal(pendingData);
+        await sendToFirestore(pendingData, pw.trim());
         showHomePage(name);
         pendingData = null;
     }
@@ -1967,9 +2114,20 @@ function initApp() {
                 const pw = passwordInput.value.trim();
                 if (!pw) { alert('اكتب كلمة السر!'); return; }
                 if (pw === existingUserData.password) {
-                    saveLocal(existingUserData.name, p, existingUserData.system);
+                    const storedUser = {
+                        name: existingUserData.name || n,
+                        phone: p,
+                        stage: existingUserData.stage || 'ثانوي',
+                        year: existingUserData.year || existingUserData.academicYear || 'أولى ثانوي',
+                        system: existingUserData.system || selectedSystem,
+                        educationSystem: existingUserData.educationSystem || 'عام',
+                        division: existingUserData.division || '',
+                        track: existingUserData.track || '',
+                        subject: existingUserData.subject || ''
+                    };
+                    saveLocal(storedUser);
                     passwordAttempts = 0;
-                    showHomePage(existingUserData.name);
+                    showHomePage(storedUser.name);
                     return;
                 } else {
                     await handleWrongPassword(p);
@@ -1978,7 +2136,7 @@ function initApp() {
                     return;
                 }
             }
-            
+
             if (window.db) {
                 const q = window.firebaseQuery(
                     window.firebaseCollection(window.db, "students"), 
@@ -1996,9 +2154,9 @@ function initApp() {
                 }
             }
             
-            pendingData = { name: n, phone: p, system: selectedSystem };
+            pendingData = buildUserData();
             if (confirmText) confirmText.textContent = '🔄 راجع بياناتك:';
-            showReview(n, p, selectedSystem);
+            showReview(pendingData);
             toggleModal(confirmPopup, true);
         });
     }
@@ -2250,6 +2408,7 @@ function initApp() {
         });
     } else {
         toggleModal(loginModal, true);
+        if (appContainer) appContainer.style.display = 'none';
         hideSkeletonLoader();
     }
     if (confirmPopup) confirmPopup.classList.remove('active');
