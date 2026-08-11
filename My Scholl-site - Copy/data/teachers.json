@@ -1,0 +1,92 @@
+{
+  "subjects": [
+    {
+      "title": "الإدارة",
+      "badgeClass": "admin-badge",
+      "teachers": [
+        { "name": "أ/ سيد  - مدير المدرسة", "phone": "1001234567" },
+        { "name": "أ/  مروه سالم", "phone": "01003914796" },
+        { "name": "أ/  هبه", "phone": "01111302462" }
+      ]
+    },
+    {
+      "title": "اللغة العربية",
+      "badgeClass": "arabic-badge",
+      "teachers": [
+        { "name": "أ/ ريم", "phone": "01024676283" },
+        { "name": "أ/ حسن ابراهيم", "phone": "01030135410" },
+        { "name": "أ/(الزغل) محمود محمد", "phone": "01093969256"}
+      ]
+    },
+    {
+      "title": "الرياضيات",
+      "badgeClass": "math-badge",
+      "teachers": [
+        { "name": "أ/  محمد الجمال", "phone": "01284504849" },
+        { "name": "أ/  نورهان", "phone": "01070985751" },
+        { "name": "أ/ كريم هاشم", "phone": "01200663362"},
+        { "name": "أ/ وائل وفا", "phone": "01001960769"}
+             
+      ]
+    },
+    {
+      "title": "العلوم",
+      "badgeClass": "science-badge",
+      "teachers": [
+        { "name": "أ/ منى العشري", "phone": "01055972683" },
+        { "name": "أ/ تامر صلاح", "phone": "01223808342" },
+        { "name": "أ/ احمد مجدي", "phone": "01121237654" },
+        { "name": "أ/ باسم مجدي ", "phone": "01283846557"},
+        { "name": "أ/ احمد امين", "phone": "01223694634"},
+        { "name": "أ/ مصطفى", "phone": "01228387864"}
+        
+      ]
+    },
+    {
+      "title": "اللغة الإنجليزية",
+      "badgeClass": "english-badge",
+      "teachers": [
+        { "name": "أ/ علاء الشبراوي", "phone": "01060245077" },
+        { "name": "أ/ ضياء الهاشم", "phone": "@diaa_elhashem_" }
+
+      ]
+    },
+    {
+      "title": "البرمجه",
+      "badgeClass": "programming-badge",
+      "teachers":[
+        { "name": "أ/ هبه ", "phone": "01111302462"}
+      ]
+    },
+    {
+      "title": "التاريخ",
+      "badgeClass": "history-badge",
+      "teachers":[
+        { "name": "أ/ صلاح", "phone": "01278704646"},
+        { "name": "أ/ محمد غانم", "phone": "01063697156"}
+      ]
+    },
+    {
+      "title": "علم النفس",
+      "badgeClass": "psychology-badge",
+      "teachers":[
+        { "name": "أ/ مرفت", "phone": "01064206096"},
+        { "name": "أ/ نهى عبدالفتاح", "phone": "01119941618"}
+      ]
+    },
+    {
+      "title": "اللغة الفرنسية",
+      "badgeClass": "french-badge",
+      "teachers":[
+        {"name": "أ/ طرهوني احمد", "phone": "01003397216"}
+      ]
+    },
+    {
+      "title": "اللغة الايطالية",
+      "badgeClass": "italian-badge",
+      "teachers":[
+        { "name": "أ/ احمد عبدالجواد", "phone": "01068497519"}
+      ]
+    }
+  ]
+}
