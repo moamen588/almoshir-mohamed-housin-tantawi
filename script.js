@@ -124,21 +124,36 @@
 
                 if (!isExpired) {
                     document.body.innerHTML = `
-                        <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;background:linear-gradient(135deg,#0f172a,#1e293b);font-family:'Segoe UI',Tahoma,sans-serif;padding:1rem;">
-                            <div style="text-align:center;background:#1e293b;padding:2.5rem 2rem;border-radius:24px;box-shadow:0 25px 50px rgba(0,0,0,0.4);border:2px solid #dc2626;max-width:520px;width:100%;">
-                                <div style="font-size:5rem;margin-bottom:1rem;">🚫</div>
-                                <h1 style="color:#ef4444;font-size:2rem;margin-bottom:1rem;">تم حظر جهازك</h1>
-                                <p style="color:#94a3b8;font-size:1.1rem;margin-bottom:1.5rem;">عذراً، غير مسموح لك بدخول هذا الموقع</p>
-                                <div style="background:#0f172a;border-radius:16px;padding:1.2rem;margin-bottom:1.5rem;border:1px solid #334155;">
-                                    <div style="display:flex;justify-content:space-between;margin-bottom:0.8rem;"><span style="color:#64748b;">📅 تاريخ الحظر:</span><span style="color:#e2e8f0;font-weight:600;">${banDate}</span></div>
-                                    <div style="display:flex;justify-content:space-between;margin-bottom:0.8rem;"><span style="color:#64748b;">⚠️ سبب الحظر:</span><span style="color:#f87171;font-weight:600;">${banReason}</span></div>
-                                    ${banExpiry ? `<div style="display:flex;justify-content:space-between;margin-bottom:0.8rem;"><span style="color:#64748b;">⏳ ينتهي:</span><span style="color:#fbbf24;font-weight:600;">${banExpiry.toLocaleDateString('ar-EG')}</span></div>` : ''}
-                                    <div style="display:flex;justify-content:space-between;"><span style="color:#64748b;">🔒 IP:</span><span style="color:#94a3b8;font-family:monospace;">${escapeHtml(window.userIP || 'غير معروف')}</span></div>
+                        <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;background:linear-gradient(135deg,#edf6ff 0%,#dbeafe 30%,#f8fafc 100%);font-family:'Segoe UI',Tahoma,sans-serif;padding:1.25rem;">
+                            <div style="width:min(560px,100%);background:rgba(255,255,255,0.95);padding:2rem 1.6rem;border-radius:28px;box-shadow:0 30px 60px rgba(15,23,42,0.12);border:1px solid rgba(59,130,246,0.1);overflow:hidden;position:relative;">
+                                <div style="position:absolute;inset:0 auto auto 0;height:6px;width:100%;background:linear-gradient(90deg,#dc2626,#f97316,#fbbf24,#3b82f6);"></div>
+                                <div style="display:flex;align-items:center;justify-content:center;gap:0.8rem;margin-bottom:1rem;">
+                                    <img src="simg.jpg" alt="شعار المدرسة" style="width:72px;height:72px;border-radius:18px;object-fit:cover;border:3px solid #dbeafe;box-shadow:0 10px 24px rgba(59,130,246,.2);" />
+                                    <div style="text-align:right;">
+                                        <div style="font-size:0.78rem;color:#3b82f6;font-weight:700;letter-spacing:0.08em;">بوابة الطلاب</div>
+                                        <div style="font-size:1.05rem;color:#0f172a;font-weight:800;">مدرسة المشير محمد حسين طنطاوي</div>
+                                    </div>
                                 </div>
-                                <p style="color:#fbbf24;font-size:1rem;font-weight:600;margin-bottom:1.2rem;">📞 تواصل مع المطور لمراجعة الحظر:</p>
-                                <div style="display:flex;gap:0.8rem;justify-content:center;flex-wrap:wrap;">
-                                    <a href="https://wa.me/201224736512" target="_blank" style="display:flex;align-items:center;gap:0.5rem;background:#25D366;color:white;padding:0.8rem 1.3rem;border-radius:50px;text-decoration:none;font-weight:700;font-size:0.95rem;box-shadow:0 4px 15px rgba(37,211,102,0.3);">📱 واتساب</a>
-                                    <a href="https://www.instagram.com/moomenmagdy588" target="_blank" style="display:flex;align-items:center;gap:0.5rem;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:white;padding:0.8rem 1.3rem;border-radius:50px;text-decoration:none;font-weight:700;font-size:0.95rem;box-shadow:0 4px 15px rgba(220,39,67,0.3);">📷 انستجرام</a>
+
+                                <div style="text-align:center;margin-top:1rem;">
+                                    <div style="font-size:4.2rem;line-height:1;margin-bottom:0.8rem;">🚫</div>
+                                    <h1 style="margin:0 0 0.5rem;color:#b91c1c;font-size:2.2rem;font-weight:900;">تم حظر الجهاز</h1>
+                                    <p style="margin:0;color:#475569;font-size:1rem;line-height:1.8;">عذراً، غير مسموح لك بالدخول إلى الموقع الآن.</p>
+                                </div>
+
+                                <div style="margin:1.5rem 0 1.2rem;background:linear-gradient(135deg,#f8fafc,#eef2ff);border:1px solid #dbeafe;border-radius:18px;padding:1rem;">
+                                    <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:0.75rem;flex-wrap:wrap;"><span style="color:#64748b;font-weight:700;">📅 تاريخ الحظر</span><span style="color:#0f172a;font-weight:800;">${banDate}</span></div>
+                                    <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:0.75rem;flex-wrap:wrap;"><span style="color:#64748b;font-weight:700;">⚠️ سبب الحظر</span><span style="color:#dc2626;font-weight:800;text-align:left;">${banReason}</span></div>
+                                    ${banExpiry ? `<div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:0.75rem;flex-wrap:wrap;"><span style="color:#64748b;font-weight:700;">⏳ ينتهي</span><span style="color:#b45309;font-weight:800;">${banExpiry.toLocaleDateString('ar-EG')}</span></div>` : ''}
+                                    <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;"><span style="color:#64748b;font-weight:700;">🔒 IP</span><span style="color:#334155;font-family:monospace;font-weight:700;">${escapeHtml(window.userIP || 'غير معروف')}</span></div>
+                                </div>
+
+                                <div style="text-align:center;">
+                                    <p style="margin:0 0 1rem;color:#b45309;font-size:0.98rem;font-weight:800;">📞 تواصل مع المطور لمراجعة الحظر</p>
+                                    <div style="display:flex;gap:0.8rem;justify-content:center;flex-wrap:wrap;">
+                                        <a href="https://wa.me/201224736512" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;background:linear-gradient(135deg,#22c55e,#16a34a);color:white;padding:0.8rem 1.2rem;border-radius:50px;text-decoration:none;font-weight:800;font-size:0.96rem;box-shadow:0 12px 22px rgba(34,197,94,0.25);">📱 واتساب</a>
+                                        <a href="https://www.instagram.com/moomenmagdy588" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;background:linear-gradient(135deg,#f59e0b,#ef4444,#ec4899,#8b5cf6);color:white;padding:0.8rem 1.2rem;border-radius:50px;text-decoration:none;font-weight:800;font-size:0.96rem;box-shadow:0 12px 22px rgba(236,72,153,0.25);">📷 انستجرام</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>`;
@@ -204,6 +219,17 @@ function containsForbiddenText(text) {
     const lowerText = text.toLowerCase().trim();
     return FORBIDDEN_WORDS.some(word => lowerText.includes(word));
 }
+
+function toggleExamDetails(button) {
+    const target = document.getElementById(button.dataset.target);
+    if (!target) return;
+
+    const isHidden = target.classList.toggle('hidden');
+    button.textContent = isHidden ? 'عرض الكل' : 'إخفاء التفاصيل';
+    button.setAttribute('aria-expanded', String(!isHidden));
+}
+
+window.toggleExamDetails = toggleExamDetails;
 
 // ========== التطبيق الرئيسي ==========
 function initApp() {
@@ -510,7 +536,22 @@ function initApp() {
             } catch(e) {}
         }
         localStorage.removeItem('school_user');
-        document.body.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;min-height:100vh;background:#0f172a;font-family:sans-serif;padding:1rem;"><div style="text-align:center;background:#1e293b;padding:2.5rem 2rem;border-radius:24px;border:2px solid #dc2626;max-width:520px;width:100%;"><div style="font-size:5rem;">🚫</div><h1 style="color:#ef4444;font-size:2rem;">تم حظر جهازك</h1><p style="color:#94a3b8;">${escapeHtml(reason)}</p></div></div>`;
+        document.body.innerHTML = `
+            <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;background:linear-gradient(135deg,#eef6ff,#dbeafe,#f8fafc);font-family:'Segoe UI',Tahoma,sans-serif;padding:1.2rem;">
+                <div style="width:min(520px,100%);background:rgba(255,255,255,0.96);padding:2rem 1.6rem;border-radius:26px;box-shadow:0 28px 60px rgba(15,23,42,0.12);border:1px solid rgba(59,130,246,0.12);text-align:center;position:relative;overflow:hidden;">
+                    <div style="position:absolute;inset:0 auto auto 0;height:6px;width:100%;background:linear-gradient(90deg,#ef4444,#f97316,#fbbf24,#3b82f6);"></div>
+                    <div style="display:flex;align-items:center;justify-content:center;gap:0.8rem;margin-bottom:1rem;">
+                        <img src="simg.jpg" alt="شعار المدرسة" style="width:72px;height:72px;border-radius:18px;object-fit:cover;border:3px solid #dbeafe;box-shadow:0 10px 24px rgba(59,130,246,.2);" />
+                        <div style="text-align:right;">
+                            <div style="font-size:0.78rem;color:#3b82f6;font-weight:700;letter-spacing:0.08em;">بوابة الطلاب</div>
+                            <div style="font-size:1.02rem;color:#0f172a;font-weight:800;">مدرسة المشير محمد حسين طنطاوي</div>
+                        </div>
+                    </div>
+                    <div style="font-size:4.2rem;line-height:1;margin:1rem 0 0.8rem;">🚫</div>
+                    <h1 style="margin:0 0 0.5rem;color:#b91c1c;font-size:2.1rem;font-weight:900;">تم حظر الجهاز</h1>
+                    <p style="margin:0;color:#475569;font-size:1rem;line-height:1.8;">${escapeHtml(reason)}</p>
+                </div>
+            </div>`;
         throw new Error('AUTO_BANNED');
     }
 

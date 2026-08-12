@@ -307,6 +307,65 @@
         </div>
       </div>
 
+      <section class="hero-section">
+        <div class="hero-content">
+          <div class="hero-text">
+            <span class="hero-badge">بوابة الطلاب</span>
+            <h2>كل ما يحتاجه الطالب في مكان واحد</h2>
+            <p>جداول الامتحانات، بيانات المعلمين، التواصل مع الإدارة، والخدمات التعليمية كلها في واجهة رسمية سريعة وواضحة.</p>
+            <div class="hero-actions">
+              <a href="#examSection" class="btn-outline">الجدول الأسبوعي / الامتحاني</a>
+            </div>
+            <ul class="hero-stats">
+              <li>📚 جداول امتحانات</li>
+              <li>👨‍🏫 معلومات المعلمين</li>
+              <li>📲 خدمات سريعة</li>
+            </ul>
+          </div>
+          <div class="hero-visual">
+            <div class="hero-visual-card">
+              <img src="simg.jpg" alt="شعار المدرسة" class="hero-logo">
+              <div class="hero-card-info">
+                <span>آخر تحديث</span>
+                <strong>أخبار المدرسة</strong>
+                <small>محدثة يوميًا</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="news-section" id="latestNews">
+        <div class="section-header">
+          <h3 class="section-title">آخر الأخبار</h3>
+          <a href="#latestNews" class="meta-link">عرض الكل</a>
+        </div>
+
+        <div class="news-grid">
+          <article class="news-card">
+            <span class="news-tag">إعلان</span>
+            <h4>تحديث نظام الدخول للطلاب</h4>
+            <p>تم تحسين نظام تسجيل الدخول لتسهيل الوصول إلى الجداول والمعلمين من الهاتف بسهولة أكبر.</p>
+            <div class="news-meta">
+              <span>📅 12 أغسطس 2026</span>
+              <a href="#">تفاصيل</a>
+            </div>
+          </article>
+
+          
+
+          <article class="news-card">
+            <span class="news-tag success">خدمة</span>
+            <h4>تسهيل التواصل مع الإدارة</h4>
+            <p>تمت إضافة روابط سريعة للتواصل مع الإدارة والمعلمين عبر واتساب وتحديث المعلومات.</p>
+            <div class="news-meta">
+              <span>📅 5 أغسطس 2026</span>
+              <a href="#developerSection">تواصل الآن</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
       <!-- ==================== الكتب والتقييمات ==================== -->
       <div class="grid-2col">
         <div class="card">
@@ -332,109 +391,123 @@
         <a href="https://www.facebook.com/share/g/1JjobkbtBc/" class="btn-primary" target="_blank" rel="noopener">جروب المدرسة</a>
       </div>
 
-      <section class="section-title">📅 جدول امتحانات الفصل الدراسي الثاني 2025/2026 (نهاية العام)</section>
+      <section class="section-title" id="examSection">📅 جدول امتحانات الفصل الدراسي الثاني 2025/2026 (نهاية العام)</section>
 
-      <div class="card">
-        <h3>📝 أولاً: المواد غير المضافة للمجموع</h3>
-        <table class="exam-table responsive-table">
-          <thead><tr><th>اليوم والتاريخ</th><th>المادة</th><th>الوقت</th><th>زمن الإجابة</th><th>الحالة</th></tr></thead>
-          <tbody>
-            <tr><td data-label="اليوم"><strong>الإثنين 2026/5/11</strong></td>
-                <td data-label="المادة">اللغة الأجنبية الثانية</td>
-                <td data-label="الوقت">9:00 → 10:30</td>
-                <td data-label="المدة">ساعة ونصف</td>
-                <td data-label="الحالة" style="background: #dcfce7; color: #15803d; font-weight: 600; border-radius: 8px;">✅ تم امتحانه</td>
-             </tr>
-            <tr><td data-label="اليوم"><strong>الثلاثاء 2026/5/12</strong></td>
-                <td data-label="المادة">التربية الدينية</td>
-                <td data-label="الوقت">9:00 → 10:30</td>
-                <td data-label="المدة">ساعة ونصف</td>
-                <td data-label="الحالة" style="background: #dcfce7; color: #15803d; font-weight: 600; border-radius: 8px;">✅ تم امتحانه</td>
-             </tr>
-            <tr><td data-label="اليوم"><strong>الأربعاء 2026/5/13</strong></td>
-                <td data-label="المادة">البرمجة والذكاء الاصطناعي</td>
-                <td data-label="الوقت">9:00 → 10:00</td>
-                <td data-label="المدة">ساعة</td>
-                <td data-label="الحالة" style="background: #dcfce7; color: #15803d; font-weight: 600; border-radius: 8px;">✅ تم امتحانه</td>
-             </tr>
-          </tbody>
-        </table>
+      <div class="exam-summary card">
+        <div class="summary-header">
+          <div>
+            <p class="summary-label">ملخص الجداول</p>
+            <h3>أحدث مواعيد الامتحانات</h3>
+          </div>
+          <button type="button" class="toggle-exam-btn" data-target="allExamDetails" aria-expanded="false" onclick="toggleExamDetails(this)">عرض الكل</button>
+        </div>
+        <div class="summary-pills">
+          <span>مواد غير مضافة</span>
+          <span>مواد مضافة</span>
+          <span>أبريل 2026</span>
+          <span>QUREO</span>
+        </div>
       </div>
 
-      <div class="card">
-        <h3>📚 ثانياً: المواد المضافة للمجموع</h3>
-        <table class="exam-table responsive-table">
-          <thead><tr><th>اليوم والتاريخ</th><th>المادة</th><th>الوقت</th><th>زمن الإجابة</th><th>الحالة</th></tr></thead>
-          <tbody>
-            <tr><td data-label="اليوم"><strong>السبت 2026/5/16</strong></td><td data-label="المادة">اللغة الأجنبية الأولى</td><td data-label="الوقت">9:00 → 11:30</td><td data-label="المدة">ساعتان ونصف</td><td data-label="الحالة" style="background: #dcfce7; color: #15803d; font-weight: 600; border-radius: 8px;">✅ تم امتحانه</td></tr>
-            <tr><td data-label="اليوم"><strong>السبت 2026/5/16</strong></td><td data-label="المادة">التاريخ</td><td data-label="الوقت">12:00 → 1:30</td><td data-label="المدة">ساعة ونصف</td><td data-label="الحالة" style="background: #dcfce7; color: #15803d; font-weight: 600; border-radius: 8px;">✅ تم امتحانه</td></tr>
-            <tr><td data-label="اليوم"><strong>الإثنين 2026/5/18</strong></td><td data-label="المادة">اللغة العربية</td><td data-label="الوقت">9:00 → 12:00</td><td data-label="المدة">3 ساعات</td><td data-label="الحالة" style="background: #dcfce7; color: #15803d; font-weight: 600; border-radius: 8px;">✅ تم امتحانه</td></tr>
-            <tr><td data-label="اليوم"><strong>الأربعاء 2026/5/20</strong></td><td data-label="المادة">الرياضيات</td><td data-label="الوقت">9:00 → 12:00</td><td data-label="المدة">3 ساعات</td><td data-label="الحالة" style="background: #dcfce7; color: #15803d; font-weight: 600; border-radius: 8px;">✅ تم امتحانه</td></tr>
-            <tr><td data-label="اليوم"><strong>السبت 2026/5/23</strong></td><td data-label="المادة">العلوم المتكاملة</td><td data-label="الوقت">9:00 → 11:00</td><td data-label="المدة">ساعتان</td><td data-label="الحالة" style="background: #dcfce7; color: #15803d; font-weight: 600; border-radius: 8px;">✅ تم امتحانه</td></tr>
-            <tr><td data-label="اليوم"><strong>السبت 2026/5/23</strong></td><td data-label="المادة">الفلسفة والمنطق</td><td data-label="الوقت">11:30 → 1:00</td><td data-label="المدة">ساعة ونصف</td><td data-label="الحالة" style="background: #dcfce7; color: #15803d; font-weight: 600; border-radius: 8px;">✅ تم امتحانه</td></tr>
-          </tbody>
-        </table>
-        <p style="color:#64748b;font-size:0.8rem;margin-top:0.5rem;">⚠️ ملاحظات: يطبق القرار الوزاري 138 لسنة 2024 و 234 لسنة 2025. تجري امتحانات المستوى الرفيع تحت إشراف التوجيه الفني.</p>
+      <div class="card countdown-card exam-countdown">
+        <div class="countdown-header"><span class="countdown-icon">📅</span><h3>امتحان QUREO</h3></div>
+        <p class="countdown-date">الثلاثاء : 22/07/2026 : 9 ص</p>
+        <div class="countdown-timer" id="countdown1">
+          <div class="time-block"><span class="time-number" id="days1">00</span><span class="time-label">يوم</span></div>
+          <div class="time-block"><span class="time-number" id="hours1">00</span><span class="time-label">ساعة</span></div>
+          <div class="time-block"><span class="time-number" id="minutes1">00</span><span class="time-label">دقيقة</span></div>
+          <div class="time-block"><span class="time-number" id="seconds1">00</span><span class="time-label">ثانية</span></div>
+        </div>
       </div>
 
-      <div class="exam-images">
-        <img src="finalGadwal.jpeg" alt="جدول امتحانات نهاية العام - المواد المضافة" class="exam-img" onclick="openLightbox(this.src, 'جدول امتحانات نهاية العام - المواد المضافة')" title="اضغط للتكبير">
-        <img src="finalGadwal1.jpeg" alt="جدول امتحانات نهاية العام - المواد غير المضافة" class="exam-img" onclick="openLightbox(this.src, 'جدول امتحانات نهاية العام - المواد غير المضافة')" title="اضغط للتكبير">
-      </div>
+      <div id="allExamDetails" class="exam-details hidden">
+        <div class="card">
+          <h3>📝 أولاً: المواد غير المضافة للمجموع</h3>
+          <table class="exam-table responsive-table">
+            <thead><tr><th>اليوم والتاريخ</th><th>المادة</th><th>الوقت</th><th>زمن الإجابة</th><th>الحالة</th></tr></thead>
+            <tbody>
+              <tr><td data-label="اليوم"><strong>الإثنين 2026/5/11</strong></td>
+                  <td data-label="المادة">اللغة الأجنبية الثانية</td>
+                  <td data-label="الوقت">9:00 → 10:30</td>
+                  <td data-label="المدة">ساعة ونصف</td>
+                  <td data-label="الحالة" style="background: #dcfce7; color: #15803d; font-weight: 600; border-radius: 8px;">✅ تم امتحانه</td>
+               </tr>
+              <tr><td data-label="اليوم"><strong>الثلاثاء 2026/5/12</strong></td>
+                  <td data-label="المادة">التربية الدينية</td>
+                  <td data-label="الوقت">9:00 → 10:30</td>
+                  <td data-label="المدة">ساعة ونصف</td>
+                  <td data-label="الحالة" style="background: #dcfce7; color: #15803d; font-weight: 600; border-radius: 8px;">✅ تم امتحانه</td>
+               </tr>
+              <tr><td data-label="اليوم"><strong>الأربعاء 2026/5/13</strong></td>
+                  <td data-label="المادة">البرمجة والذكاء الاصطناعي</td>
+                  <td data-label="الوقت">9:00 → 10:00</td>
+                  <td data-label="المدة">ساعة</td>
+                  <td data-label="الحالة" style="background: #dcfce7; color: #15803d; font-weight: 600; border-radius: 8px;">✅ تم امتحانه</td>
+               </tr>
+            </tbody>
+          </table>
+        </div>
 
-      <section class="section-title">📅 جدول امتحانات شهر أبريل 2026</section>
-      <div class="card">
-        <table class="exam-table responsive-table">
-          <thead><tr><th>اليوم والتاريخ</th><th>مواد الصف الأول الثانوي</th><th>الحالة</th></tr></thead>
-          <tbody>
-            <tr><td data-label="اليوم"><strong>الأحد 2026/5/3</strong></td><td data-label="المواد">لغة عربية – تربية دينية</td><td data-label="الحالة" style="background: #dcfce7; color: #15803d; font-weight: 600; border-radius: 8px;">✅ تم امتحانه</td></tr>
-            <tr><td data-label="اليوم"><strong>الإثنين 2026/5/4</strong></td><td data-label="المواد">العلوم المتكاملة – التاريخ – البرمجة والذكاء الاصطناعي</td><td data-label="الحالة" style="background: #dcfce7; color: #15803d; font-weight: 600; border-radius: 8px;">✅ تم امتحانه</td></tr>
-            <tr><td data-label="اليوم"><strong>الثلاثاء 2026/5/5</strong></td><td data-label="المواد">اللغة الأجنبية الأولى – فلسفة ومنطق</td><td data-label="الحالة" style="background: #dcfce7; color: #15803d; font-weight: 600; border-radius: 8px;">✅ تم امتحانه</td></tr>
-            <tr><td data-label="اليوم"><strong>الأربعاء 2026/5/6</strong></td><td data-label="المواد">رياضيات – لغة أجنبية ثانية</td><td data-label="الحالة" style="background: #dcfce7; color: #15803d; font-weight: 600; border-radius: 8px;">✅ تم امتحانه</td></tr>
-          </tbody>
-        </table>
-        <p style="color:#64748b;font-size:0.85rem;margin-top:0.5rem;">⚠️ هام: يعقد الامتحان أثناء اليوم الدراسي.<br>🕐 نظام خدمات: يبدأ الامتحان الساعة <strong>11:00 صباحاً</strong>.</p>
-      </div>
-      <div class="exam-images">
-        <img src="gadwal-april.jpeg" alt="جدول امتحانات شهر أبريل" class="exam-img" onclick="openLightbox(this.src, 'جدول امتحانات شهر أبريل 2026')" title="اضغط للتكبير">
-      </div>
+        <div class="card">
+          <h3>📚 ثانياً: المواد المضافة للمجموع</h3>
+          <table class="exam-table responsive-table">
+            <thead><tr><th>اليوم والتاريخ</th><th>المادة</th><th>الوقت</th><th>زمن الإجابة</th><th>الحالة</th></tr></thead>
+            <tbody>
+              <tr><td data-label="اليوم"><strong>السبت 2026/5/16</strong></td><td data-label="المادة">اللغة الأجنبية الأولى</td><td data-label="الوقت">9:00 → 11:30</td><td data-label="المدة">ساعتان ونصف</td><td data-label="الحالة" style="background: #dcfce7; color: #15803d; font-weight: 600; border-radius: 8px;">✅ تم امتحانه</td></tr>
+              <tr><td data-label="اليوم"><strong>السبت 2026/5/16</strong></td><td data-label="المادة">التاريخ</td><td data-label="الوقت">12:00 → 1:30</td><td data-label="المدة">ساعة ونصف</td><td data-label="الحالة" style="background: #dcfce7; color: #15803d; font-weight: 600; border-radius: 8px;">✅ تم امتحانه</td></tr>
+              <tr><td data-label="اليوم"><strong>الإثنين 2026/5/18</strong></td><td data-label="المادة">اللغة العربية</td><td data-label="الوقت">9:00 → 12:00</td><td data-label="المدة">3 ساعات</td><td data-label="الحالة" style="background: #dcfce7; color: #15803d; font-weight: 600; border-radius: 8px;">✅ تم امتحانه</td></tr>
+              <tr><td data-label="اليوم"><strong>الأربعاء 2026/5/20</strong></td><td data-label="المادة">الرياضيات</td><td data-label="الوقت">9:00 → 12:00</td><td data-label="المدة">3 ساعات</td><td data-label="الحالة" style="background: #dcfce7; color: #15803d; font-weight: 600; border-radius: 8px;">✅ تم امتحانه</td></tr>
+              <tr><td data-label="اليوم"><strong>السبت 2026/5/23</strong></td><td data-label="المادة">العلوم المتكاملة</td><td data-label="الوقت">9:00 → 11:00</td><td data-label="المدة">ساعتان</td><td data-label="الحالة" style="background: #dcfce7; color: #15803d; font-weight: 600; border-radius: 8px;">✅ تم امتحانه</td></tr>
+              <tr><td data-label="اليوم"><strong>السبت 2026/5/23</strong></td><td data-label="المادة">الفلسفة والمنطق</td><td data-label="الوقت">11:30 → 1:00</td><td data-label="المدة">ساعة ونصف</td><td data-label="الحالة" style="background: #dcfce7; color: #15803d; font-weight: 600; border-radius: 8px;">✅ تم امتحانه</td></tr>
+            </tbody>
+          </table>
+          <p style="color:#64748b;font-size:0.8rem;margin-top:0.5rem;">⚠️ ملاحظات: يطبق القرار الوزاري 138 لسنة 2024 و 234 لسنة 2025. تجري امتحانات المستوى الرفيع تحت إشراف التوجيه الفني.</p>
+        </div>
 
-      <section class="section-title">📅 جدول امتحان البرمجة العملي على منصة QUREO</section>
-      <div class="card">
-        <table class="exam-table responsive-table">
-          <thead><tr><th>اليوم والتاريخ</th><th>المحافظات</th><th>الحالة</th></tr></thead>
-          <tbody>
-            <tr><td data-label="اليوم"><strong>الاثنين 2026/5/11</strong></td>
-                <td data-label="المحافظات">الإسكندرية - الغربية - سوهاج - قنا - الفيوم - شمال سيناء - المنيا - كفر الشيخ - دمياط</td>
-                <td data-label="الحالة" style="background: #dcfce7; color: #15803d; font-weight: 600; border-radius: 8px;">✅ تم امتحانه</td>
-             </tr>
-            <tr><td data-label="اليوم"><strong>الثلاثاء 2026/5/12</strong></td>
-                <td data-label="المحافظات">الجيزة - الشرقية - الدقهلية - أسيوط - جنوب سيناء - بني سويف - الأقصر - مطروح - بورسعيد</td>
-                <td data-label="الحالة" style="background: #dcfce7; color: #15803d; font-weight: 600; border-radius: 8px;">✅ تم امتحانه</td>
-             </tr>
-            <tr><td data-label="اليوم"><strong>الأربعاء 2026/5/13</strong></td>
-                <td data-label="المحافظات">القاهرة - القليوبية - البحيرة - المنوفية - الإسماعيلية - أسوان - البحر الأحمر - الوادي الجديد - السويس</td>
-                <td data-label="الحالة" style="background: #dcfce7; color: #15803d; font-weight: 600; border-radius: 8px;">✅ تم امتحانه</td>
-             </tr>
-          </tbody>
-        </table>
-        <p style="color:#64748b;font-size:0.9rem;margin-top:0.5rem;">يرجى اتباع ذات الإجراءات المتبعة سابقاً في هذا الامتحان.</p>
-      </div>
+        <div class="exam-images">
+          <img src="finalGadwal.jpeg" alt="جدول امتحانات نهاية العام - المواد المضافة" class="exam-img" onclick="openLightbox(this.src, 'جدول امتحانات نهاية العام - المواد المضافة')" title="اضغط للتكبير">
+          <img src="finalGadwal1.jpeg" alt="جدول امتحانات نهاية العام - المواد غير المضافة" class="exam-img" onclick="openLightbox(this.src, 'جدول امتحانات نهاية العام - المواد غير المضافة')" title="اضغط للتكبير">
+        </div>
 
-      <!-- ==================== مؤقت العد التنازلي ==================== -->
-<section class="section-title">⏳ مؤقت العد التنازلي لامتحان البرمجة (التصفيات)</section>
-<div class="countdown-grid" id="countdownGrid">
-  <div class="card countdown-card">
-    <div class="countdown-header"><span class="countdown-icon">📅</span><h3>امتحان QUREO</h3></div>
-    <p class="countdown-date">الثلاثاء : 22/07/2026 : 9 ص</p>
-    <div class="countdown-timer" id="countdown1">
-      <div class="time-block"><span class="time-number" id="days1">00</span><span class="time-label">يوم</span></div>
-      <div class="time-block"><span class="time-number" id="hours1">00</span><span class="time-label">ساعة</span></div>
-      <div class="time-block"><span class="time-number" id="minutes1">00</span><span class="time-label">دقيقة</span></div>
-      <div class="time-block"><span class="time-number" id="seconds1">00</span><span class="time-label">ثانية</span></div>
-    </div>
-  </div>
-</div>
+        <section class="section-title">📅 جدول امتحانات شهر أبريل 2026</section>
+        <div class="card">
+          <table class="exam-table responsive-table">
+            <thead><tr><th>اليوم والتاريخ</th><th>مواد الصف الأول الثانوي</th><th>الحالة</th></tr></thead>
+            <tbody>
+              <tr><td data-label="اليوم"><strong>الأحد 2026/5/3</strong></td><td data-label="المواد">لغة عربية – تربية دينية</td><td data-label="الحالة" style="background: #dcfce7; color: #15803d; font-weight: 600; border-radius: 8px;">✅ تم امتحانه</td></tr>
+              <tr><td data-label="اليوم"><strong>الإثنين 2026/5/4</strong></td><td data-label="المواد">العلوم المتكاملة – التاريخ – البرمجة والذكاء الاصطناعي</td><td data-label="الحالة" style="background: #dcfce7; color: #15803d; font-weight: 600; border-radius: 8px;">✅ تم امتحانه</td></tr>
+              <tr><td data-label="اليوم"><strong>الثلاثاء 2026/5/5</strong></td><td data-label="المواد">اللغة الأجنبية الأولى – فلسفة ومنطق</td><td data-label="الحالة" style="background: #dcfce7; color: #15803d; font-weight: 600; border-radius: 8px;">✅ تم امتحانه</td></tr>
+              <tr><td data-label="اليوم"><strong>الأربعاء 2026/5/6</strong></td><td data-label="المواد">رياضيات – لغة أجنبية ثانية</td><td data-label="الحالة" style="background: #dcfce7; color: #15803d; font-weight: 600; border-radius: 8px;">✅ تم امتحانه</td></tr>
+            </tbody>
+          </table>
+          <p style="color:#64748b;font-size:0.85rem;margin-top:0.5rem;">⚠️ هام: يعقد الامتحان أثناء اليوم الدراسي.<br>🕐 نظام خدمات: يبدأ الامتحان الساعة <strong>11:00 صباحاً</strong>.</p>
+        </div>
+        <div class="exam-images">
+          <img src="gadwal-april.jpeg" alt="جدول امتحانات شهر أبريل" class="exam-img" onclick="openLightbox(this.src, 'جدول امتحانات شهر أبريل 2026')" title="اضغط للتكبير">
+        </div>
+
+        <section class="section-title">📅 جدول امتحان البرمجة العملي على منصة QUREO</section>
+        <div class="card">
+          <table class="exam-table responsive-table">
+            <thead><tr><th>اليوم والتاريخ</th><th>المحافظات</th><th>الحالة</th></tr></thead>
+            <tbody>
+              <tr><td data-label="اليوم"><strong>الاثنين 2026/5/11</strong></td>
+                  <td data-label="المحافظات">الإسكندرية - الغربية - سوهاج - قنا - الفيوم - شمال سيناء - المنيا - كفر الشيخ - دمياط</td>
+                  <td data-label="الحالة" style="background: #dcfce7; color: #15803d; font-weight: 600; border-radius: 8px;">✅ تم امتحانه</td>
+               </tr>
+              <tr><td data-label="اليوم"><strong>الثلاثاء 2026/5/12</strong></td>
+                  <td data-label="المحافظات">الجيزة - الشرقية - الدقهلية - أسيوط - جنوب سيناء - بني سويف - الأقصر - مطروح - بورسعيد</td>
+                  <td data-label="الحالة" style="background: #dcfce7; color: #15803d; font-weight: 600; border-radius: 8px;">✅ تم امتحانه</td>
+               </tr>
+              <tr><td data-label="اليوم"><strong>الأربعاء 2026/5/13</strong></td>
+                  <td data-label="المحافظات">القاهرة - القليوبية - البحيرة - المنوفية - الإسماعيلية - أسوان - البحر الأحمر - الوادي الجديد - السويس</td>
+                  <td data-label="الحالة" style="background: #dcfce7; color: #15803d; font-weight: 600; border-radius: 8px;">✅ تم امتحانه</td>
+               </tr>
+            </tbody>
+          </table>
+          <p style="color:#64748b;font-size:0.9rem;margin-top:0.5rem;">يرجى اتباع ذات الإجراءات المتبعة سابقاً في هذا الامتحان.</p>
+        </div>
+      </div>
 
       <!-- ==================== روابط خارجية ==================== -->
       <div class="grid-2col">
