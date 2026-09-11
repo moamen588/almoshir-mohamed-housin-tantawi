@@ -1116,6 +1116,62 @@ body.dark-mode .app-header::before {
   border-bottom: 1px solid #25D366;
 }
 
+/* ========== ATTENDANCE DATES ========== */
+.grid-attendance {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.2rem;
+}
+
+.attendance-card {
+  align-items: flex-start;
+  padding: 1.4rem;
+  text-align: center;
+}
+
+.attendance-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.attendance-badge {
+  font-weight: 800;
+  font-size: 1.1rem;
+  display: block;
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e2e8f0;
+  width: 100%;
+}
+
+.primary-stage { color: #27ae60; }
+.prep-stage { color: #2980b9; }
+.secondary-stage { color: #8e44ad; }
+
+.attendance-details {
+  width: 100%;
+  text-align: right;
+}
+
+.attendance-details p {
+  margin: 0.3rem 0;
+  font-weight: 500;
+  color: #334155;
+}
+
+.attendance-note {
+  margin-top: 0.6rem;
+  padding: 0.4rem 0.7rem;
+  background: #f0fdf4;
+  border-radius: 8px;
+  border-right: 3px solid #27ae60;
+  font-size: 0.9rem;
+  color: #166534;
+}
+
+body.dark-mode .attendance-card p { color: #cbd5e1; }
+body.dark-mode .attendance-note { background: #064e3b; color: #6ee7b7; }
+
 /* ========== GROUPS ========== */
 .groups {
   display: flex;
@@ -2459,6 +2515,7 @@ body.dark-mode .responsive-table td {
   .exam-img { max-width: 280px; }
   .countdown-grid { grid-template-columns: 1fr; }
   .grid-teachers { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+  .grid-attendance { grid-template-columns: 1fr; }
   .card { padding: 1.5rem 1.2rem; }
   .developer-card { padding: 1.5rem 1.2rem !important; }
   .dev-contact { flex-direction: column; align-items: center; }
